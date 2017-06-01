@@ -7,8 +7,8 @@
         <div class="list-group">
             {% for link in links %}
                 <a href="{{ link.url }}" target="_blank" class="list-group-item">
-                    {{ link.title }}
-                    <span class="small">Submitted by ?</span>
+                    {{ link.title }} -
+                    <span class="small">Submitted by {{ link.author.username ?: '?' }}</span>
                 </a>
             {% endfor %}
         </div>

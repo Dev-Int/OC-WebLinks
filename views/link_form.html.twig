@@ -1,0 +1,42 @@
+{% extends 'layout.html.twig' %}
+{% form_theme linkForm 'bootstrap_3_horizontal_layout.html.twig' %}
+{% set linkMenu = true %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h2 class="text-center">{{ block('title') }}</h2>
+    {% for flashMessage in app.session.flashbag.get('success') %}
+    <div class="alert alert-success">
+        {{ flashMessage }}
+    </div>
+    {% endfor %}
+
+    <div class="well">
+        {{ form_start(linkForm) }}
+
+        <div class="form-group">
+            {{ form_label(linkForm.title) }}
+            {{ form_errors(linkForm.title) }}
+            <div class="col-md-6">
+                {{ form_widget(linkForm.title) }}
+            </div>
+        </div>
+
+        
+        <div class="form-group">
+            {{ form_label(linkForm.url) }}
+            {{ form_errors(linkForm.url) }}
+            <div class="col-md-6">
+                {{ form_widget(linkForm.url) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-3">
+                <input type="submit" class="btn btn-primary" value="Save" />
+            </div>
+        </div>
+        {{ form_end(linkForm) }}
+    </div>
+{% endblock %}
