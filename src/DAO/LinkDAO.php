@@ -21,7 +21,8 @@ class LinkDAO extends DAO
      *
      * @return array A list of all links.
      */
-    public function findAll() {
+    public function findAll()
+    {
         $sql = "select * from t_link order by link_id desc";
         $result = $this->getDb()->fetchAll($sql);
         
@@ -83,7 +84,8 @@ class LinkDAO extends DAO
      *
      * @param integer $userId The id of the user
      */
-    public function deleteAllByUser($userId) {
+    public function deleteAllByUser($userId)
+    {
         $this->getDb()->delete('t_link', array('user_id' => $userId));
     }
 
@@ -92,7 +94,8 @@ class LinkDAO extends DAO
      *
      * @param integer $id The link id
      */
-    public function delete($id) {
+    public function delete($id)
+    {
         //Delete the link
         $this->getDb()->delete('t_link', ['link_id' => $id]);
     }
@@ -103,7 +106,8 @@ class LinkDAO extends DAO
      * @param array $row The DB row containing Link data.
      * @return \WebLinks\Domain\Link
      */
-    protected function buildDomainObject($row) {
+    protected function buildDomainObject($row)
+    {
         $link = new Link();
         $link->setId($row['link_id']);
         $link->setTitle($row['link_title']);
