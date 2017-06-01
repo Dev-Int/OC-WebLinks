@@ -43,7 +43,7 @@ class LinkDAO extends DAO
      */
     public function find($id)
     {
-        $sql = "select * from t_link where art_id=?";
+        $sql = "select * from t_link where link_id=?";
         $row = $this->getDb()->fetchAssoc($sql, array($id));
 
         if ($row) {
@@ -76,6 +76,25 @@ class LinkDAO extends DAO
             $id = $this->getDb()->lastInsertId();
             $link->setId($id);
         }
+    }
+    
+    /**
+     * Removes all link for a user
+     *
+     * @param integer $userId The id of the user
+     */
+    public function deleteAllByUser($userId) {
+        $this->getDb()->delete('t_link', array('user_id' => $userId));
+    }
+
+    /**
+     * Remove a link from the database.
+     *
+     * @param integer $id The link id
+     */
+    public function delete($id) {
+        //Delete the link
+        $this->getDb()->delete('t_link', ['link_id' => $id]);
     }
 
     /**

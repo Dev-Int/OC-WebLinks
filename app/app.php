@@ -55,6 +55,7 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
     ),
     'security.access_rules' => array(
         array('^/admin', 'ROLE_ADMIN'),
+//        array('link/submit', 'ROLE_USER'),
     ),
 ));
 $app->register(new Silex\Provider\FormServiceProvider());
