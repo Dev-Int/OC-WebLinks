@@ -29,27 +29,6 @@ class AppTest extends WebTestCase
     }
 
     /**
-     * Basic, application-wide functional test inspired by Symfony best practices.
-     * Simply checks that all application URLs load redirect.
-     * Duringtest execution, this method is called for each URL returned by the redirectUrls method.
-     *
-     * @dataProvider redirectUrls
-     */
-    public function testPageIsRedirect($url)
-    {
-        $client = $this->createClient();
-        $client->request('GET', $url);
-
-        $this->assertTrue($client->getResponse()->isRedirection());
-    }
-
-    protected function setUp()
-    {
-        parent::setUp();
-        $this->updateDB();
-    }
-
-    /**
      * {@inheritDoc}
      */
     public function createApplication()
@@ -83,26 +62,5 @@ class AppTest extends WebTestCase
             array('/api/links'),
             array('/api/link/1'),
         );
-    }
-
-    public function redirectUrls()
-    {
-        return array(
-            ['/link/submit'],
-            ['/admin/link/1/delete'],
-            ['/admin/user/1/delete'],
-        );
-    }
-
-    public function tearDown()
-    {
-        $this->updateDB();
-    }
-
-    private function updateDB()
-    {
-        // Update database
-        shell_exec('mysql weblinks < ' . __DIR__.'/../../db/structure.sql');
-        shell_exec('mysql weblinks < ' . __DIR__.'/../../db/content.sql');
     }
 }
